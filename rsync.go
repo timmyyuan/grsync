@@ -71,8 +71,12 @@ type RsyncOptions struct {
 	XAttrs bool
 	// Owner preserve owner (super-user only)
 	Owner bool
+	// NoOwner not preserve owner (super-user only)
+	NoOwner bool
 	// Group preserve group
 	Group bool
+	// NoGroup not preserve group
+	NoGroup bool
 	// Devices preserve device files (super-user only)
 	Devices bool
 	// Specials preserve special files
@@ -329,9 +333,17 @@ func getArguments(options RsyncOptions) []string {
 	if options.Owner {
 		arguments = append(arguments, "--owner")
 	}
+	
+	if options.NoOwner {
+		arguments = append(arguments, "--no-owner")
+	}
 
 	if options.Group {
 		arguments = append(arguments, "--group")
+	}
+	
+	if options.NoGroup {
+		arguments = append(arguments, "--no-group")
 	}
 
 	if options.Devices {
