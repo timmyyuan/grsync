@@ -321,6 +321,10 @@ func getArguments(options RsyncOptions) []string {
 	if options.Executability {
 		arguments = append(arguments, "--executability")
 	}
+	
+	if options.CHMOD > 0 {
+		arguments = append(arguments, fmt.Sprintf("--chmod=%v", options.CHMOD))
+	}
 
 	if options.ACLs {
 		arguments = append(arguments, "--acls")
