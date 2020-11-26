@@ -59,6 +59,8 @@ type RsyncOptions struct {
 	HardLinks bool
 	// Perms preserve permissions
 	Perms bool
+	// NoPerms not preserve permissions
+	NoPerms bool
 	// Executability preserve executability
 	Executability bool
 	// CHMOD affect file and/or directory permissions
@@ -306,6 +308,10 @@ func getArguments(options RsyncOptions) []string {
 
 	if options.Perms {
 		arguments = append(arguments, "--perms")
+	}
+	
+	if options.NoPerms {
+		arguments = append(arguments, "--no-perms")
 	}
 
 	if options.Executability {
